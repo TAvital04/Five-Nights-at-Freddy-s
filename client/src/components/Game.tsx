@@ -1,13 +1,15 @@
 // Imports and constants
     import {useState, useEffect} from "react"
 
+    import * as calculatePosition from "../modules/calculatePosition.tsx"
+
 // Types
     type Animatronic = {
         position: number
         maxPosition: number
     }
 
-    type Restaurant = {
+    export type Restaurant = {
         animatronics: {
             freddy: Animatronic
             foxy: Animatronic
@@ -43,61 +45,42 @@
         })
 
     // Effects
-        // Freddy
-            useEffect(() => {
-                // Functions
-                    const reRenderFreddy = (restaurant: Restaurant) => {
-                        // Declare variables
-                            const freddy = restaurant.animatronics.freddy
-                            let movement
-
-                        // Calculate the direction of movement
-                            movement = Math.floor(Math.random() * 3 - 1)
-
-                        // Validate and update movement
-                            if(freddy.position + movement > freddy.maxPosition) {
-                                movement = 0
-                            } else if(freddy.position + movement == 0) {
-                                movement = -1
-                            } else {
-                                movement = freddy.position + movement
-                            }
-
-                            console.log(restaurant)
-                            console.log(movement)
-
-                        // Update the restaurant
-                            setRestaurant({
-                                animatronics: {
-                                    freddy: {
-                                        position: movement,
-                                        maxPosition: freddy.maxPosition
-                                    },
-                                    foxy: {
-                                        position: restaurant.animatronics.foxy.position,
-                                        maxPosition: restaurant.animatronics.foxy.maxPosition
-                                    },
-                                    chica: {
-                                        position: restaurant.animatronics.chica.position,
-                                        maxPosition: restaurant.animatronics.chica.maxPosition
-                                    },
-                                    bonnie: {
-                                        position: restaurant.animatronics.bonnie.position,
-                                        maxPosition: restaurant.animatronics.bonnie.maxPosition
-                                    }
-                                },
-                                time: restaurant.time
-                            })
-                    }
-
-                // Body
+        // Recalculate restaurant values based on animatronic movement
+            // Freddy
+                useEffect(() => {
                     const interval = setInterval(() => {
-                        reRenderFreddy(restaurant)
+                        setRestaurant(calculatePosition.freddy(restaurant))
                     }, 10 * 1000)
 
-                // Return
                     return () => clearInterval(interval)
-            }, [restaurant])
+                }, [restaurant])
+
+            // Foxy
+                useEffect(() => {
+                    const interval = setInterval(() => {
+                        setRestaurant(calculatePosition.foxy(restaurant))
+                    }, 10 * 1000)
+
+                    return () => clearInterval(interval)
+                }, [restaurant])
+
+            // Chica
+                useEffect(() => {
+                    const interval = setInterval(() => {
+                        setRestaurant(calculatePosition.chica(restaurant))
+                    }, 10 * 1000)
+
+                    return () => clearInterval(interval)
+                }, [restaurant])
+
+            // Bonnie
+                useEffect(() => {
+                    const interval = setInterval(() => {
+                        setRestaurant(calculatePosition.bonnie(restaurant))
+                    }, 10 * 1000)
+
+                    return () => clearInterval(interval)
+                }, [restaurant])
 
     // Render the component
             return (
