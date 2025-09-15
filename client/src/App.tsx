@@ -1,7 +1,7 @@
 // Imports and constants
   import Game from "./components/Game.tsx"
 
-function App() {
+const App = () => {
   // Render the component
     return (
       <>

@@ -1,10 +1,9 @@
 // Imports and constants
-    import {useState, useEffect} from "react"
-
-    import * as calculatePosition from "../modules/calculatePosition.tsx"
+    import {useState} from "react"
+    import {useInterval} from "usehooks-ts"
 
 // Types
-    type Animatronic = {
+    export type Animatronic = {
         position: number
         maxPosition: number
     }
@@ -19,8 +18,26 @@
         time: number
     }
 
+// Functions
+    const calculatePosition = (animatronic: Animatronic): Animatronic => {
+        const update = JSON.parse(JSON.stringify(animatronic))
+
+        const movement = Math.floor(Math.random() * 3 - 1)
+        let newLocation
+
+        newLocation = movement + animatronic.position
+        
+        if(newLocation > animatronic.maxPosition) {
+            newLocation = animatronic.maxPosition
+        } else if(newLocation <= 0) {
+            newLocation = -1
+        }
+
+        update.position = newLocation
+        return update
+    }
 // Component body
-    function Game() {
+    const Game = () => {
     // Variables
         const [restaurant, setRestaurant] = useState<Restaurant>({
             animatronics: {
@@ -43,49 +60,46 @@
             },
             time: 36
         })
+        const [count, setCount] = useState(1)
+        const [done, setDone] = useState(false)
 
     // Effects
         // Recalculate restaurant values based on animatronic movement
-            // Freddy
-                useEffect(() => {
-                    const interval = setInterval(() => {
-                        setRestaurant(calculatePosition.freddy(restaurant))
-                    }, 10 * 1000)
+        useInterval(
+            () => {
+                let result = JSON.parse(JSON.stringify(restaurant))
 
-                    return () => clearInterval(interval)
-                }, [restaurant])
+                if(count % 10 === 0) {
+                    console.log("Freddy moved")
+                    console.log(result.animatronics)
+                    result = calculatePosition(result.animatronics.freddy)
+                }
+                if(count % 9 === 0) {
+                    console.log("Foxy moved")
+                    console.log(result.animatronics)
+                    result = calculatePosition(result.animatronics.foxy)
+                }
+                if(count % 8 === 0) {
+                    console.log("Chica moved")
+                    console.log(result.animatronics)
+                    result = calculatePosition(result.animatronics.chica)
+                }
+                if(count % 7 === 0) {
+                    console.log("Bonnie moved")
+                    console.log(result.animatronics)
+                    result = calculatePosition(result.animatronics.bonnie)
+                }
 
-            // Foxy
-                useEffect(() => {
-                    const interval = setInterval(() => {
-                        setRestaurant(calculatePosition.foxy(restaurant))
-                    }, 10 * 1000)
-
-                    return () => clearInterval(interval)
-                }, [restaurant])
-
-            // Chica
-                useEffect(() => {
-                    const interval = setInterval(() => {
-                        setRestaurant(calculatePosition.chica(restaurant))
-                    }, 10 * 1000)
-
-                    return () => clearInterval(interval)
-                }, [restaurant])
-
-            // Bonnie
-                useEffect(() => {
-                    const interval = setInterval(() => {
-                        setRestaurant(calculatePosition.bonnie(restaurant))
-                    }, 10 * 1000)
-
-                    return () => clearInterval(interval)
-                }, [restaurant])
+                setRestaurant(result)
+                setCount(() => count + 1)
+            }, done? 1 * 1000: null
+        )
 
     // Render the component
             return (
             <>
-                
+                {/* {console.log(count) || true}
+                {console.log(restaurant) || true} */}
             </>
         )
     }
