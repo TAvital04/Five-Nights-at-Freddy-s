@@ -2,6 +2,10 @@
     import {useState} from "react"
     import {useInterval} from "usehooks-ts"
 
+    import style from "../styles/Game.module.css"
+
+    import Office from "./Office.tsx"
+
 // Types
     export type Animatronic = {
         position: number
@@ -18,24 +22,6 @@
         time: number
     }
 
-// Functions
-    const calculatePosition = (animatronic: Animatronic): Animatronic => {
-        const update = JSON.parse(JSON.stringify(animatronic))
-
-        const movement = Math.floor(Math.random() * 3 - 1)
-        let newLocation
-
-        newLocation = movement + animatronic.position
-        
-        if(newLocation > animatronic.maxPosition) {
-            newLocation = animatronic.maxPosition
-        } else if(newLocation <= 0) {
-            newLocation = -1
-        }
-
-        update.position = newLocation
-        return update
-    }
 // Component body
     const Game = () => {
     // Variables
@@ -62,45 +48,51 @@
         })
         const [count, setCount] = useState(1)
         const [done, setDone] = useState(false)
+        // const [camera, setCamera] = useState(1)
+
+    // Functions
+        const moveAnimatronic = (animatronic: Animatronic) => {
+            const movement = Math.floor(Math.random() * 3 - 1)
+            let newLocation
+
+            newLocation = movement + animatronic.position
+            
+            if(newLocation > animatronic.maxPosition) {
+                newLocation = animatronic.maxPosition
+            } else if(newLocation <= 0) {
+                setDone(true)
+            }
+
+            animatronic.position = newLocation
+        }
 
     // Effects
         // Recalculate restaurant values based on animatronic movement
         useInterval(
             () => {
-                let result = JSON.parse(JSON.stringify(restaurant))
-
                 if(count % 10 === 0) {
-                    console.log("Freddy moved")
-                    console.log(result.animatronics)
-                    result = calculatePosition(result.animatronics.freddy)
+                    moveAnimatronic(restaurant.animatronics.freddy)
                 }
-                if(count % 9 === 0) {
-                    console.log("Foxy moved")
-                    console.log(result.animatronics)
-                    result = calculatePosition(result.animatronics.foxy)
+                else if(count % 9 === 0) {
+                    moveAnimatronic(restaurant.animatronics.foxy)
                 }
-                if(count % 8 === 0) {
-                    console.log("Chica moved")
-                    console.log(result.animatronics)
-                    result = calculatePosition(result.animatronics.chica)
+                else if(count % 8 === 0) {
+                    moveAnimatronic(restaurant.animatronics.chica)
                 }
-                if(count % 7 === 0) {
-                    console.log("Bonnie moved")
-                    console.log(result.animatronics)
-                    result = calculatePosition(result.animatronics.bonnie)
+                else if(count % 3 === 0 || count % 4 == 0) {
+                    moveAnimatronic(restaurant.animatronics.bonnie)
                 }
 
-                setRestaurant(result)
+                setRestaurant(restaurant)
                 setCount(() => count + 1)
-            }, done? 1 * 1000: null
+            }, done? null:  1 * 1000
         )
 
     // Render the component
             return (
-            <>
-                {/* {console.log(count) || true}
-                {console.log(restaurant) || true} */}
-            </>
+            <div className = {style.body}>
+                <Office />
+            </div>
         )
     }
 

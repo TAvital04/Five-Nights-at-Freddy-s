@@ -1,0 +1,38 @@
+/* Fills the window and centers the board */
+.body {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+
+ background-color: black;
+}
+
+/* Tweak the ratio once here */
+:root {
+  --board-w: 16;
+  --board-h: 9;
+}
+
+/* The fixed-aspect container that never exceeds the viewport */
+.board {
+  aspect-ratio: var(--board-w) / var(--board-h);
+  width: min(100vw, calc(100dvh * (var(--board-w) / var(--board-h))));
+  height: auto;        /* derives from aspect-ratio */
+  position: relative;  /* for absolute % children */
+  font-size: min(2.2vh, 1.8vw); /* optional: makes text scale with board */
+}
+
+/* Make the Game root fill the board */
+.board > * {
+  width: 100%;
+  height: 100%;
+}
+
+/* Helpful defaults so children can shrink */
+.board * {
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: 0;
+}
