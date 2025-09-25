@@ -2,8 +2,6 @@
     import {useState} from "react"
     import {useInterval} from "usehooks-ts"
 
-    import style from "../styles/Game.module.css"
-
     import Office from "./Office.tsx"
 
 // Types
@@ -90,9 +88,9 @@
 
     // Render the component
             return (
-            <div className = {style.body}>
-                <Office />
-            </div>
+                <>
+                    <Office />
+                </>
         )
     }
 

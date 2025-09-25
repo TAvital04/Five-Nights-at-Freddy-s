@@ -6,11 +6,9 @@
 const App = () => {
   // Render the component
     return (
-      <div className = {style.body}>
-        <div className = {style.board}>
+      <>
           <Game />
-        </div>
-      </div>
+      </>
     )
 }
 
