@@ -1,6 +1,6 @@
 import imageStyle from "../styles/imageStyle.module.css"
 
-import office from "../assets/office.png"
+import office from "../assets/Office.png"
 import officeHalls from "../assets/office_halls.png"
 
 const Office = () => {
