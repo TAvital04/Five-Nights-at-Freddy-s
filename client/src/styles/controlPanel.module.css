@@ -1,3 +1,28 @@
-.body button {
-    position: static;
+button {
+  position: absolute;
+  width: 3.5vw;
+  height: 3.5vw;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
+
+.left > .light {
+    top: 51%;
+    left: 16%;
+}
+
+.left > .door {
+    top: 61%;
+    left: 16%;
+}
+
+.right > .light {
+    top: 47%;
+    left: 77%;
+}
+
+.right > .door {
+    top: 57%;
+    left: 77%;
 }

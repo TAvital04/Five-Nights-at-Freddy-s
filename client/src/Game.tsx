@@ -81,13 +81,16 @@ const Game = () => {
             setRestaurant(restaurant);
             setCount(() => count + 1);
         },
-        done ? null : 1 * 1000
+        done ? null : 1000 * 1000
     );
 
     // Render the component
     return (
         <>
-            <Office />
+            <Office 
+                bonnie = { restaurant.animatronics.bonnie.position }
+                chica = { restaurant.animatronics.chica.position }
+            />
         </>
     );
 };

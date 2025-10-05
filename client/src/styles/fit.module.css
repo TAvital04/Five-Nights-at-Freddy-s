@@ -1,17 +1,19 @@
 .game {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: black; /* shows behind letterboxing */
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: black;
+  overflow: hidden;
 }
 
-/* This is the actual game canvas (auto aspect ratio from image) */
+/* This is your “screen” */
 .aspect {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+  position: relative;
+  display: inline-block;
+  aspect-ratio: 2266 / 1488; /* 👈 Locks your true ratio */
+  width: min(100vw, 100vh * (2266 / 1488));
+  height: auto;
+  overflow: hidden;
 }
