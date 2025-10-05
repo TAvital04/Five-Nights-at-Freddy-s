@@ -1,19 +1,7 @@
 import { useState } from 'react'
 
-import OfficeBG from '../backgrounds/OfficeBG'
+import OfficeBG from './OfficeBG'
 import ControlPanel from './ControlPanel'
-
-import fit from '../../styles/fit.module.css'
-
-interface SideState {
-    light: boolean;
-    door: boolean;
-}
-
-interface OfficeState {
-    left: SideState;
-    right: SideState
-}
 
 interface OfficeProps {
     bonnie: number;
@@ -35,8 +23,7 @@ const Office = ({
     })
 
     return (
-        <div className={fit.game}>
-            <div className={fit.aspect}>
+        <>
                 <OfficeBG 
                     officeState = {officeState}
                     bonnie = { bonnie }
@@ -46,9 +33,7 @@ const Office = ({
                     officeState = { officeState }
                     setOfficeState = { setOfficeState }
                 />
-            </div>
-            {true || console.log(officeState)}
-        </div>
+        </>
     );
 };
 

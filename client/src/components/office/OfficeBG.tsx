@@ -1,4 +1,3 @@
-import backgroundStyle from "../../styles/background.module.css";
 import office from "../../assets/Office.png";
 import controlPanel from "../../assets/Office_Controls.png";
 import hallsDark from "../../assets/Office_Dark.png";
@@ -8,6 +7,8 @@ import hallsBonnie from "../../assets/Office_Bonnie.png";
 import hallsChica from "../../assets/Office_Chica.png";
 import doorLeft from "../../assets/Office_Door_Left.png";
 import doorRight from "../../assets/Office_Door_Right.png";
+
+import backgroundStyle from "../../styles/background.module.css";
 
 interface OfficeBGProps {
     officeState: {
