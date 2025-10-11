@@ -1,0 +1,31 @@
+button {
+    position: absolute;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
+
+.officeToggle {
+    width: 6%;
+    height: 9%;
+}
+
+.left > .light {
+    top: 51%;
+    left: 16%;
+}
+
+.left > .door {
+    top: 60%;
+    left: 16%;
+}
+
+.right > .light {
+    top: 48%;
+    left: 77%;
+}
+
+.right > .door {
+    top: 57%;
+    left: 77%;
+}
