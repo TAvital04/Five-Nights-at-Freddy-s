@@ -1,7 +1,8 @@
 import type { Dispatch, SetStateAction } from "react";
-import controlPanelStyle from "../../styles/controlPanel.module.css";
 
-interface ControlPanelProps {
+import officeControls from "../../styles/officeControls.module.css";
+
+interface OfficeControlsProps {
     officeState: {
         left: { light: boolean; door: boolean };
         right: { light: boolean; door: boolean };
@@ -14,9 +15,9 @@ interface ControlPanelProps {
     >;
 }
 
-const ControlPanel = ({
+const OfficeControls = ({
     officeState, setOfficeState
-}: ControlPanelProps) => {
+}: OfficeControlsProps) => {
     const handleToggle = (side: string, operation: string) => {
         const result = {
             left: {
@@ -50,16 +51,28 @@ const ControlPanel = ({
 
     return (
         <>
-            <div className = {`${controlPanelStyle.left}`}>
-                <button className={`${controlPanelStyle.light}`} onClick = { () => handleToggle("left", "light") }/>
-                <button className={`${controlPanelStyle.door}`} onClick = { () => handleToggle("left", "door")} />
+            <div className={`${officeControls.left}`}>
+                <button
+                    className={`${officeControls.officeToggle} ${officeControls.light}`}
+                    onClick={() => handleToggle("left", "light")}
+                />
+                <button
+                    className={`${officeControls.officeToggle} ${officeControls.door}`}
+                    onClick={() => handleToggle("left", "door")}
+                />
             </div>
-            <div className = {`${controlPanelStyle.right}`}>
-                <button className={`${controlPanelStyle.light}`} onClick = { () => handleToggle("right", "light") }/>
-                <button className={`${controlPanelStyle.door}`} onClick = { () => handleToggle("right", "door")} />
+            <div className={`${officeControls.right}`}>
+                <button
+                    className={`${officeControls.officeToggle} ${officeControls.light}`}
+                    onClick={() => handleToggle("right", "light")}
+                />
+                <button
+                    className={`${officeControls.officeToggle} ${officeControls.door}`}
+                    onClick={() => handleToggle("right", "door")}
+                />
             </div>
         </>
-    )
+    );
 }
 
-export default ControlPanel;
+export default OfficeControls;

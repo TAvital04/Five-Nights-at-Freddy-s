@@ -1,5 +1,6 @@
 import office from "../../assets/Office.png";
-import controlPanel from "../../assets/Office_Controls.png";
+
+import officeControls from "../../assets/Office_Controls.png";
 import hallsDark from "../../assets/Office_Dark.png";
 import hallsLeft from "../../assets/Office_Hall_Left.png";
 import hallsRight from "../../assets/Office_Hall_Right.png";
@@ -19,12 +20,16 @@ interface OfficeBGProps {
     chica: number;
 }
 
-const OfficeBG = ({ officeState, bonnie, chica }: OfficeBGProps) => (
-    <div className={backgroundStyle.container}>
+const OfficeBG = ({
+    officeState,
+    bonnie,
+    chica
+}: OfficeBGProps) => (
+    <div>
         <img
             src={hallsDark}
             alt="halls dark"
-            className={backgroundStyle.base}
+            className={backgroundStyle.overlay}
         />
 
         {officeState.left.light && (
@@ -73,7 +78,7 @@ const OfficeBG = ({ officeState, bonnie, chica }: OfficeBGProps) => (
 
         <img src={office} alt="office" className={backgroundStyle.overlay} />
         <img
-            src={controlPanel}
+            src={officeControls}
             alt="controls"
             className={backgroundStyle.overlay}
         />

@@ -2,9 +2,9 @@
 import { useState } from "react";
 import { useInterval } from "usehooks-ts";
 
-import Office from "./components/office/Office.tsx";
-import Camera from "./components/camera/Camera.tsx";
-import CameraToggle from "./components/camera/CameraToggle.tsx"
+import Office from "./components/office/Office";
+import Camera from "./components/camera/Camera";
+import CameraToggle from "./components/camera/CameraToggle"
 
 import fit from "./styles/fit.module.css";
 
@@ -50,7 +50,8 @@ const Game = () => {
     });
     const [count, setCount] = useState(1);
     const [done, setDone] = useState(false);
-    const [camera, setCamera] = useState(false)
+    const [cameraToggle, setCameraToggle] = useState(false)
+    const [cameraPos, setCameraPos] = useState(1.1)
 
     // Functions
     const moveAnimatronic = (animatronic: Animatronic) => {
@@ -92,14 +93,22 @@ const Game = () => {
     return (
         <div className={fit.game}>
             <div className={fit.aspect}>
-                {camera?
-                    <Camera />:
+                {cameraToggle?
+                    <Camera 
+                        restaurant = { restaurant }
+                        cameraPos = { cameraPos }
+                        setCameraPos = { setCameraPos }
+                    />:
                     <Office 
                         bonnie = { restaurant.animatronics.bonnie.position }
                         chica = { restaurant.animatronics.chica.position }
                     />
                 }
-                <CameraToggle />
+
+                <CameraToggle 
+                    camera = { cameraToggle }
+                    setCamera = { setCameraToggle }
+                />
             </div>
         </div>
     );

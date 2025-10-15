@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 import OfficeBG from './OfficeBG'
-import ControlPanel from './ControlPanel'
+import OfficeControls from "./OfficeControls";
 
 interface OfficeProps {
     bonnie: number;
@@ -24,15 +24,15 @@ const Office = ({
 
     return (
         <>
-                <OfficeBG 
-                    officeState = {officeState}
-                    bonnie = { bonnie }
-                    chica = { chica }
-                />
-                <ControlPanel 
-                    officeState = { officeState }
-                    setOfficeState = { setOfficeState }
-                />
+            <OfficeBG 
+                officeState = {officeState}
+                bonnie = { bonnie }
+                chica = { chica }
+            />
+            <OfficeControls 
+                officeState = { officeState }
+                setOfficeState = { setOfficeState }
+            />
         </>
     );
 };

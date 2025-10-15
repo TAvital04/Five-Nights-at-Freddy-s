@@ -22,3 +22,10 @@
   object-position: center;
   pointer-events: none;
 }
+
+.map {
+  position: absolute;
+  width: 70%;
+  top: 20%;
+  left: 30%;
+}

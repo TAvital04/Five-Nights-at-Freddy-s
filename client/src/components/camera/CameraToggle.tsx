@@ -1,24 +1,38 @@
-import cameraToggle from "../../assets/Camera_Toggle.png";
-import cameraToggleBase from "../../assets/Camera_Toggle_Base.png";
+import type { Dispatch, SetStateAction } from "react"
 
-import backgroundStyle from "../../styles/background.module.css";
-import uiStyle from "../../styles/ui.module.css";
+import cameraToggle from "../../assets/Camera_Toggle.png"
 
-const CameraToggle = () => {
+import backgroundStyle from '../../styles/background.module.css'
+import cameraToggleStyle from '../../styles/cameraToggle.module.css'
+
+export interface CameraToggleProps {
+    camera: boolean;
+    setCamera: Dispatch<SetStateAction<boolean>>;
+}
+
+const CameraToggle = ({
+    camera,
+    setCamera
+}: CameraToggleProps) => {
+    const handleToggle = () => {
+        const result = !camera
+        setCamera(result)
+    }
+
     return (
-        <div className={`${uiStyle.uiElement} ${uiStyle.cameraToggle}`}>
+        <>
             <img
-                src={cameraToggleBase}
-                alt="camera toggle base"
-                className={backgroundStyle.base}
-            />
-            <img
+                className={`${backgroundStyle.overlay}`}
                 src={cameraToggle}
                 alt="camera toggle"
-                className={backgroundStyle.overlay}
             />
-        </div>
-    );
-};
 
-export default CameraToggle;
+            <button 
+                className={`${cameraToggleStyle.cameraToggle}`}
+                onClick = { () => handleToggle() }
+            />
+        </>
+    );
+}
+
+export default CameraToggle
