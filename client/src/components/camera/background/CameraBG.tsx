@@ -1,14 +1,17 @@
 import CameraBGScreen from './CameraBGScreen'
 import CameraBGMap from './CameraBGMap'
+import CameraBGAnimatronic from './CameraBGAnimatronic';
 
-import backgroundStyle from '../../../styles/background.module.css'
+import { type Restaurant } from '../../../Game';
 
 interface CameraBGProps {
     cameraPos: number;
+    restaurant: Restaurant;
 }
 
 const CameraBG = ({
-    cameraPos
+    cameraPos,
+    restaurant
 }: CameraBGProps) => {
 
 
@@ -18,6 +21,11 @@ const CameraBG = ({
                 cameraPos = { cameraPos }
             />
 
+            <CameraBGAnimatronic
+                cameraPos = { cameraPos }
+                restaurant = { restaurant }
+            />
+            
             <CameraBGMap
                 cameraPos = { cameraPos }
             />

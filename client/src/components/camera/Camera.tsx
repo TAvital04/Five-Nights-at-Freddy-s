@@ -1,9 +1,8 @@
-import { type Dispatch, type SetStateAction } from "react";
+import { useEffect, type Dispatch, type SetStateAction } from "react";
 
 import type { Restaurant } from "../../Game"
 
 import CameraBG from './background/CameraBG'
-import CameraBGAnimatronic from './background/CameraBGAnimatronic'
 import CameraControls from './CameraControls'
 
 interface CameraProps {
@@ -17,15 +16,15 @@ const Camera = ({
     cameraPos,
     setCameraPos
 }: CameraProps) => {
+    useEffect(() => {
+        if(cameraPos == 1.3) restaurant.animatronics.foxy.position += 1
+    }, [])
+
     return (
         <>
             <CameraBG
                 cameraPos = { cameraPos }
-            />
-
-            <CameraBGAnimatronic
                 restaurant = { restaurant }
-                cameraPos = { cameraPos }
             />
 
             <CameraControls

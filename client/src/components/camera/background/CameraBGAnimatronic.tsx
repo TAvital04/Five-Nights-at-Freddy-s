@@ -1,5 +1,3 @@
-import { type Restaurant, type Animatronic } from '../../../Game'
-
 import A_1A_Bonnie from "../../../assets/A_1A_Bonnie.png"
 import A_1A_Chica from "../../../assets/A_1A_Chica.png"
 import A_1A_Freddy from "../../../assets/A_1A_Freddy.png"
@@ -17,6 +15,8 @@ import A_4B_Freddy from "../../../assets/A_4B_Freddy.png"
 import A_5_Bonnie from "../../../assets/A_5_Bonnie.png"
 import A_7_Chica from "../../../assets/A_7_Chica.png"
 import A_7_Freddy from "../../../assets/A_7_Freddy.png"
+
+import { type Restaurant } from "../../../Game"
 
 import backgroundStyle from "../../../styles/background.module.css"
 
@@ -38,63 +38,55 @@ const CameraBGAnimatronic = ({
     const getCamera = (): string[] => {
         const result: string[] = []
 
-        const getAnimatronicCamera = (s: string) => {
-            <img
-                src={s}
-                alt={s}
-                className={backgroundStyle.overlay}
-            />            
-        }
-
         switch(cameraPos) {
             case 1.1:
-                if(bonnie.position == 5) getAnimatronicCamera(A_1A_Bonnie)
-                if(chica.position == 5) getAnimatronicCamera(A_1A_Chica)
-                if(freddy.position == 7) getAnimatronicCamera(A_1A_Freddy)
+                if(bonnie.position == 5) result.push(A_1A_Bonnie)
+                if(chica.position == 6) result.push(A_1A_Chica)
+                if(freddy.position == 6) result.push(A_1A_Freddy)
 
                 break
 
             case 1.2:
-                if(bonnie.position == 4) getAnimatronicCamera(A_1B_Bonnie)
-                if(chica.position == 4) getAnimatronicCamera(A_1B_Chica)
-                if(freddy.position == 6) getAnimatronicCamera(A_1B_Freddy) 
+                if(bonnie.position == 4) result.push(A_1B_Bonnie)
+                if(chica.position == 4) result.push(A_1B_Chica)
+                if(freddy.position == 5) result.push(A_1B_Freddy) 
                     
                 break
 
             case 1.3:
-                if(foxy.position == 1) getAnimatronicCamera(A_1C_Foxy)
+                if(foxy.position == 1) result.push(A_1C_Foxy)
                 
                 break
 
             case 2.1:
-                if(bonnie.position == 2) getAnimatronicCamera(A_2A_Bonnie)
+                if(bonnie.position == 2) result.push(A_2A_Bonnie)
                 
                 break
 
             case 2.2:
-                if(bonnie.position == 1) getAnimatronicCamera(A_2B_Bonnie)
+                if(bonnie.position == 1) result.push(A_2B_Bonnie)
                 
                 break
 
             case 3:
-                if(freddy.position == 4) getAnimatronicCamera(A_3_Freddy)
+                if(freddy.position == 4) result.push(A_3_Freddy)
 
                 break
 
             case 4.1:
-                if(chica.position == 2) getAnimatronicCamera(A_4A_Chica)
-                if(freddy.position == 2) getAnimatronicCamera(A_4A_Freddy)
+                if(chica.position == 2) result.push(A_4A_Chica)
+                if(freddy.position == 2) result.push(A_4A_Freddy)
 
                 break
 
             case 4.2:
-                if(chica.position == 1) getAnimatronicCamera(A_4B_Chica)
-                if(freddy.position == 1) getAnimatronicCamera(A_4B_Freddy)     
+                if(chica.position == 1) result.push(A_4B_Chica)
+                if(freddy.position == 1) result.push(A_4B_Freddy)     
                     
                 break
 
             case 5:
-                if(bonnie.position == 3) getAnimatronicCamera(A_5_Bonnie)
+                if(bonnie.position == 3) result.push(A_5_Bonnie)
                 
                 break
 
@@ -102,8 +94,8 @@ const CameraBGAnimatronic = ({
                 break
 
             case 7:
-                if(chica.position == 4) getAnimatronicCamera(A_7_Chica)
-                if(freddy.position == 3) getAnimatronicCamera(A_7_Freddy)
+                if(chica.position == 4) result.push(A_7_Chica)
+                if(freddy.position == 3) result.push(A_7_Freddy)
 
                 break
 
@@ -117,12 +109,15 @@ const CameraBGAnimatronic = ({
     return (
         <>
             {
-                getCamera().forEach(camera => {
-                    <img
-                        src={camera}
-                        alt="camera screen"
-                        className={backgroundStyle.overlay}
-                    />   
+                getCamera().map(camera => {
+                    return (
+                        <img
+                            key={camera}
+                            src={camera}
+                            alt={camera}
+                            className={backgroundStyle.overlay}
+                        />
+                    )
                 })
             }       
         </>
