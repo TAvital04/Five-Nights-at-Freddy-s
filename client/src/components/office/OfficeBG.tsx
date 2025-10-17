@@ -39,7 +39,7 @@ const OfficeBG = ({
                 className={backgroundStyle.overlay}
             />
         )}
-        {officeState.left.light && bonnie === 1 && (
+        {officeState.left.light && bonnie == 1 && (
             <img
                 src={hallsBonnie}
                 alt="bonnie"
@@ -61,7 +61,7 @@ const OfficeBG = ({
                 className={backgroundStyle.overlay}
             />
         )}
-        {officeState.right.light && chica === 1 && (
+        {officeState.right.light && chica == 1 && (
             <img
                 src={hallsChica}
                 alt="chica"

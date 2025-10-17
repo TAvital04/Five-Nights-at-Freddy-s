@@ -48,7 +48,7 @@ const CameraBGAnimatronic = ({
 
             case 1.2:
                 if(bonnie.position == 4) result.push(A_1B_Bonnie)
-                if(chica.position == 4) result.push(A_1B_Chica)
+                if(chica.position == 5) result.push(A_1B_Chica)
                 if(freddy.position == 5) result.push(A_1B_Freddy) 
                     
                 break

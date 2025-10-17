@@ -1,5 +1,5 @@
 // Imports and constants
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useInterval } from "usehooks-ts";
 
 import Office from "./components/office/Office";
@@ -36,20 +36,20 @@ const Game = () => {
     const [restaurant, setRestaurant] = useState<Restaurant>({
         animatronics: {
             freddy: {
-                position: 6,
-                maxPosition: 6,
+                position: 7,
+                maxPosition: 7,
             },
             foxy: {
                 position: 9,
                 maxPosition: 9,
             },
             chica: {
-                position: 6,
-                maxPosition: 6,
+                position: 1,
+                maxPosition: 7,
             },
             bonnie: {
-                position: 5,
-                maxPosition: 5,
+                position: 6,
+                maxPosition: 6,
             },
         },
         time: 36,
@@ -76,23 +76,22 @@ const Game = () => {
     }
 
     const jumpScare = () => {
-        if(done) {
-            let animatronic
+        let animatronic
 
-            if(restaurant.animatronics.freddy.position <= 0) animatronic = Jumpscare_Freddy
-            else if(restaurant.animatronics.foxy.position <= 0) animatronic = Jumpscare_Foxy
-            else if(restaurant.animatronics.chica.position <= 0) animatronic = Jumpscare_Chica
-            else if(restaurant.animatronics.bonnie.position <= 0) animatronic = Jumpscare_Bonnie
+        if(restaurant.animatronics.freddy.position <= 0) animatronic = Jumpscare_Freddy
+        else if(restaurant.animatronics.foxy.position <= 0) animatronic = Jumpscare_Foxy
+        else if(restaurant.animatronics.chica.position <= 0) animatronic = Jumpscare_Chica
+        else if(restaurant.animatronics.bonnie.position <= 0) animatronic = Jumpscare_Bonnie
 
-            if(animatronic)
-                return (
-                    <img
-                        src = { animatronic }
-                        alt = { animatronic }
-                        className = { backgroundStyle.overlay }
-                    />
-                )
-        }
+        console.log(animatronic)
+
+        if(animatronic) return (
+            <img
+                src = { animatronic }
+                alt = { animatronic }
+                className = { backgroundStyle.overlay }
+            />
+        )
     }
 
     // Effects
@@ -114,6 +113,10 @@ const Game = () => {
         },
         done ? null : 1000 * 1000
     );
+
+    useEffect(() => {
+        
+    }, [restaurant])
 
     // Render the component
     return (
@@ -137,7 +140,7 @@ const Game = () => {
                     setCamera = { setCameraToggle }
                 />
 
-                {jumpScare()}
+                {}
             </div>
         </div>
     );
