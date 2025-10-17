@@ -30,16 +30,16 @@ const Game = () => {
     const [restaurant, setRestaurant] = useState<Restaurant>({
         animatronics: {
             freddy: {
-                position: 5,
-                maxPosition: 5,
+                position: 6,
+                maxPosition: 6,
             },
             foxy: {
-                position: 5,
-                maxPosition: 5,
+                position: 9,
+                maxPosition: 9,
             },
             chica: {
-                position: 5,
-                maxPosition: 5,
+                position: 6,
+                maxPosition: 6,
             },
             bonnie: {
                 position: 5,
