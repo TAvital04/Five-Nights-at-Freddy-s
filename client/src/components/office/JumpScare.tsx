@@ -11,13 +11,11 @@ import backgroundStyle from "../../styles/background.module.css"
 
 interface JumpScareProps {
     restaurant: Restaurant
-    done: boolean
     setDone: Dispatch<SetStateAction<boolean>>
 }
 
 const JumpScare = ({ 
     restaurant,
-    done,
     setDone
 }: JumpScareProps) => {
     const [jumpScare, setJumpscare] = useState<string | null>(null)

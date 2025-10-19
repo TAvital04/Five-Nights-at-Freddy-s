@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import { useInterval } from "usehooks-ts";
 
+import { newRestaurant, type Restaurant } from "./interfaces";
+
 import Office from "./components/office/Office";
 import Camera from "./components/camera/Camera";
 import CameraToggle from "./components/camera/CameraToggle"
@@ -13,60 +15,32 @@ import moveAnimatronics from "./utils/movement";
 // Component body
 const Game = () => {
     // Variables
-    const [restaurant, setRestaurant] = useState<Restaurant>({
-        animatronics: {
-            freddy: {
-                name: "freddy",
-                position: 7,
-                maxPosition: 7,
-            },
-            foxy: {
-                name: "foxy",
-                position: 9,
-                maxPosition: 9,
-            },
-            chica: {
-                name: "chica",
-                position: 7,
-                maxPosition: 7,
-            },
-            bonnie: {
-                name: "bonnie",
-                position: 6,
-                maxPosition: 6,
-            },
-        },
-        office: {
-            left: {
-                light: false,
-                door: false
-            },
-            right: {
-                light: false,
-                door: false
-            }
-        },
-        time: 360,
-    });
+    const [restaurant, setRestaurant] = useState<Restaurant>(newRestaurant());
     const [done, setDone] = useState(false)
     const [cameraToggle, setCameraToggle] = useState(false)
     const [cameraPos, setCameraPos] = useState(1.1)
 
     // Effects
     useInterval(() => {
-        moveAnimatronics(restaurant, cameraPos)
+        setRestaurant(moveAnimatronics(restaurant, cameraPos))
     }, done ? null : 1 * 1000)
 
     useEffect(() => {
         if(restaurant.time <= 0) setDone(true)
     }, [restaurant.time])
 
+    // Functions
+    const resetGame = () => {
+        setRestaurant(newRestaurant())
+        setDone(false)
+    }
+
     // Render the component
     return (
         <div className={fit.game}>
             <div className={fit.aspect}>
                 {   
-                    cameraToggle?
+                    cameraToggle && !done?
                     <Camera 
                         restaurant = { restaurant }
                         cameraPos = { cameraPos }
@@ -75,6 +49,8 @@ const Game = () => {
                     <Office 
                         restaurant = { restaurant }
                         setRestaurant = { setRestaurant }
+                        done = { done }
+                        resetGame = { resetGame }
                     />
                 }
 
@@ -85,18 +61,19 @@ const Game = () => {
 
                 <JumpScare
                     restaurant = { restaurant }
-                    done = { done }
                     setDone = { setDone }
                 />
             </div>
             
-            { console.log(`
-                ${restaurant.animatronics.freddy.position} 
-                ${restaurant.animatronics.foxy.position}
-                ${restaurant.animatronics.chica.position}
-                ${restaurant.animatronics.bonnie.position}
-                ${done}
-            `) }
+            {/*             
+                { console.log(`
+                    ${restaurant.animatronics.freddy.position} 
+                    ${restaurant.animatronics.foxy.position}
+                    ${restaurant.animatronics.chica.position}
+                    ${restaurant.animatronics.bonnie.position}
+                    ${done}
+                `) } 
+            */}
         </div>
     );
 };

@@ -1,16 +1,22 @@
 import type { Dispatch, SetStateAction } from "react";
 
+import { newRestaurant } from "../../interfaces"
+
 import officeControls from "../../styles/officeControls.module.css";
 import { copyOffice, type Restaurant } from "../../interfaces";
 
 interface OfficeControlsProps {
-    restaurant: Restaurant; 
-    setRestaurant: Dispatch<SetStateAction<Restaurant>>; 
+    restaurant: Restaurant
+    setRestaurant: Dispatch<SetStateAction<Restaurant>>
+    done: boolean
+    resetGame: () => void
 }
 
 const OfficeControls = ({
     restaurant,
-    setRestaurant
+    setRestaurant,
+    done,
+    resetGame
 }: OfficeControlsProps) => {
     const handleToggle = (side: string, operation: string) => {
         const result = copyOffice(restaurant.office)
@@ -38,24 +44,44 @@ const OfficeControls = ({
         <>
             <div className={`${officeControls.left}`}>
                 <button
-                    className={`${officeControls.officeToggle} ${officeControls.light}`}
+                    className={`
+                        ${officeControls.officeToggle} 
+                        ${officeControls.light}
+                    `}
                     onClick={() => handleToggle("left", "light")}
                 />
                 <button
-                    className={`${officeControls.officeToggle} ${officeControls.door}`}
+                    className={`
+                        ${officeControls.officeToggle} 
+                        ${officeControls.door}
+                    `}
                     onClick={() => handleToggle("left", "door")}
                 />
             </div>
             <div className={`${officeControls.right}`}>
                 <button
-                    className={`${officeControls.officeToggle} ${officeControls.light}`}
+                    className={`
+                        ${officeControls.officeToggle} 
+                        ${officeControls.light}
+                    `}
                     onClick={() => handleToggle("right", "light")}
                 />
                 <button
-                    className={`${officeControls.officeToggle} ${officeControls.door}`}
+                    className={`
+                        ${officeControls.officeToggle} 
+                        ${officeControls.door}
+                    `}
                     onClick={() => handleToggle("right", "door")}
                 />
             </div>
+
+            {
+                done &&
+                <button
+                    className = {`${officeControls.officeToggle} ${officeControls.reset}`}
+                    onClick = { resetGame }
+                />
+            }
         </>
     );
 }

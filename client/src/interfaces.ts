@@ -33,7 +33,7 @@
         }
     }
 
-    const newOffice= (): Office => {
+    const newOffice = (): Office => {
         return {
             left: {
                 light: false,
@@ -71,7 +71,7 @@
         time: number;
     };
 
-    const newRestaurant = (): Restaurant => {
+    export const newRestaurant = (): Restaurant => {
         return {
             animatronics: {
                 freddy: newAnimatronic("freddy", 7),

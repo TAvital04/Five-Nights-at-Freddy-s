@@ -13,7 +13,7 @@ const handleSpecialCases = (
         ) &&
         animatronic.position === 1 &&
         restaurant.office.right.door === true
-    ) return 0
+    ) return animatronic.maxPosition
 
     if (
         (
@@ -22,11 +22,11 @@ const handleSpecialCases = (
         ) &&
         animatronic.position === 1 &&
         restaurant.office.left.door === true
-    ) return 0
+    ) return animatronic.maxPosition
 
     if (
         animatronic.name === "foxy" &&
-        cameraPos === 3
+        cameraPos === 1.3
     ) return Math.min(3, animatronic.maxPosition - animatronic.position)
 
     return regularCase
