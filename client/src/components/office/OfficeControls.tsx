@@ -1,7 +1,7 @@
 import type { Dispatch, SetStateAction } from "react";
 
 import officeControls from "../../styles/officeControls.module.css";
-import { copyOffice, type Restaurant } from "../../Game";
+import { copyOffice, type Restaurant } from "../../interfaces";
 
 interface OfficeControlsProps {
     restaurant: Restaurant; 

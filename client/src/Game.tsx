@@ -8,66 +8,7 @@ import CameraToggle from "./components/camera/CameraToggle"
 import JumpScare from "./components/office/JumpScare";
 
 import fit from "./styles/fit.module.css";
-
-// Types
-export type Animatronic = {
-    name: string;
-    position: number;
-    maxPosition: number;
-};
-const copyAnimatronic = (animatronic: Animatronic): Animatronic => {
-    return {
-        name: animatronic.name,
-        position: animatronic.position,
-        maxPosition: animatronic.maxPosition
-    }
-}
-
-export type Office = {
-    left: {
-        light: boolean
-        door: boolean
-    },
-    right: {
-        light: boolean
-        door: boolean
-    }
-}
-export const copyOffice = (office: Office): Office => {
-    return {
-        left: {
-            light: office.left.light,
-            door: office.left.door
-        },
-        right: {
-            light: office.right.light,
-            door: office.right.door
-        }
-    }
-}
-
-export type Restaurant = {
-    animatronics: {
-        freddy: Animatronic;
-        foxy: Animatronic;
-        chica: Animatronic;
-        bonnie: Animatronic;
-    };
-    office: Office
-    time: number;
-};
-const copyRestaurant = (restaurant: Restaurant): Restaurant => {
-    return {
-        animatronics: {
-            freddy: copyAnimatronic(restaurant.animatronics.freddy),
-            foxy: copyAnimatronic(restaurant.animatronics.foxy),
-            chica: copyAnimatronic(restaurant.animatronics.chica),
-            bonnie: copyAnimatronic(restaurant.animatronics.bonnie)
-        },
-        office: copyOffice(restaurant.office),
-        time: restaurant.time
-    }
-}
+import moveAnimatronics from "./utils/movement";
 
 // Component body
 const Game = () => {
@@ -113,47 +54,7 @@ const Game = () => {
 
     // Effects
     useInterval(() => {
-        const specialCase = (animatronic: Animatronic, movement: number): boolean => {
-
-        }
-        const handleSpecialCases = (animatronic: Animatronic, movement: number) {
-
-        }
-
-        const moveAnimatronic = (animatronic: Animatronic) => {
-            const movement = Math.floor(Math.random() * 2 - 1);
-            let newLocation;
-
-            if(specialCase(animatronic, movement)) 
-                handleSpecialCases(animatronic, movement)
-
-            newLocation = movement + animatronic.position;
-
-            if(newLocation > animatronic.maxPosition) {
-                newLocation = animatronic.maxPosition;
-            }
-
-            animatronic.position = newLocation;
-        }
-
-        const result = copyRestaurant(restaurant)
-
-        if(restaurant.time % 10 === 0) {
-            moveAnimatronic(result.animatronics.freddy);
-        }
-        if(restaurant.time % 2 === 0) {
-            moveAnimatronic(result.animatronics.foxy);
-        }
-        if(restaurant.time % 8 === 0) {
-            moveAnimatronic(result.animatronics.chica);
-        }
-        if(restaurant.time % 3 === 0) {
-            moveAnimatronic(result.animatronics.bonnie);
-        }
-
-        result.time -= 1
-
-        setRestaurant(result);
+        moveAnimatronics(restaurant, cameraPos)
     }, done ? null : 1 * 1000)
 
     useEffect(() => {

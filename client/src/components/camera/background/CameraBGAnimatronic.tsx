@@ -16,7 +16,7 @@ import A_5_Bonnie from "../../../assets/A_5_Bonnie.png"
 import A_7_Chica from "../../../assets/A_7_Chica.png"
 import A_7_Freddy from "../../../assets/A_7_Freddy.png"
 
-import { type Restaurant } from "../../../Game"
+import { type Restaurant } from "../../../interfaces"
 
 import backgroundStyle from "../../../styles/background.module.css"
 

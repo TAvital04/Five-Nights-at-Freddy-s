@@ -1,4 +1,4 @@
-import { type Restaurant } from "../../Game";
+import { type Restaurant } from "../../interfaces";
 
 import office from "../../assets/Office.png";
 

@@ -1,6 +1,6 @@
 import { type Dispatch, type SetStateAction } from 'react'
 
-import { type Restaurant } from '../../Game';
+import { type Restaurant } from '../../interfaces';
 
 import OfficeBG from './OfficeBG'
 import OfficeControls from "./OfficeControls";

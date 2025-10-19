@@ -2,7 +2,7 @@ import CameraBGScreen from './CameraBGScreen'
 import CameraBGMap from './CameraBGMap'
 import CameraBGAnimatronic from './CameraBGAnimatronic';
 
-import { type Restaurant } from '../../../Game';
+import { type Restaurant } from "../../../interfaces"
 
 interface CameraBGProps {
     cameraPos: number;

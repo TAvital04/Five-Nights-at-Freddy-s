@@ -1,6 +1,6 @@
 import { useEffect, useState, type Dispatch, type SetStateAction } from "react"
 
-import { type Restaurant } from "../../Game"
+import { type Restaurant } from "../../interfaces"
 
 import Jumpscare_Freddy from "../../assets/Jumpscare_Freddy.png"
 import Jumpscare_Foxy from "../../assets/JumpScare_Foxy.png"

@@ -1,6 +1,6 @@
 import { useEffect, type Dispatch, type SetStateAction } from "react";
 
-import type { Restaurant } from "../../Game"
+import type { Restaurant } from "../../interfaces"
 
 import CameraBG from './background/CameraBG'
 import CameraControls from './CameraControls'
