@@ -40,16 +40,16 @@ const CameraBGAnimatronic = ({
 
         switch(cameraPos) {
             case 1.1:
-                if(bonnie.position == 5) result.push(A_1A_Bonnie)
-                if(chica.position == 6) result.push(A_1A_Chica)
-                if(freddy.position == 6) result.push(A_1A_Freddy)
+                if(bonnie.position == 6) result.push(A_1A_Bonnie)
+                if(chica.position == 7) result.push(A_1A_Chica)
+                if(freddy.position == 7) result.push(A_1A_Freddy)
 
                 break
 
             case 1.2:
-                if(bonnie.position == 4) result.push(A_1B_Bonnie)
-                if(chica.position == 5) result.push(A_1B_Chica)
-                if(freddy.position == 5) result.push(A_1B_Freddy) 
+                if(bonnie.position == 5) result.push(A_1B_Bonnie)
+                if(chica.position == 6) result.push(A_1B_Chica)
+                if(freddy.position == 6) result.push(A_1B_Freddy) 
                     
                 break
 
@@ -59,34 +59,34 @@ const CameraBGAnimatronic = ({
                 break
 
             case 2.1:
-                if(bonnie.position == 2) result.push(A_2A_Bonnie)
+                if(bonnie.position == 3) result.push(A_2A_Bonnie)
                 
                 break
 
             case 2.2:
-                if(bonnie.position == 1) result.push(A_2B_Bonnie)
+                if(bonnie.position == 2) result.push(A_2B_Bonnie)
                 
                 break
 
             case 3:
-                if(freddy.position == 4) result.push(A_3_Freddy)
+                if(freddy.position == 5) result.push(A_3_Freddy)
 
                 break
 
             case 4.1:
-                if(chica.position == 2) result.push(A_4A_Chica)
-                if(freddy.position == 2) result.push(A_4A_Freddy)
+                if(chica.position == 3) result.push(A_4A_Chica)
+                if(freddy.position == 3) result.push(A_4A_Freddy)
 
                 break
 
             case 4.2:
-                if(chica.position == 1) result.push(A_4B_Chica)
-                if(freddy.position == 1) result.push(A_4B_Freddy)     
+                if(chica.position == 2) result.push(A_4B_Chica)
+                if(freddy.position == 2) result.push(A_4B_Freddy)     
                     
                 break
 
             case 5:
-                if(bonnie.position == 3) result.push(A_5_Bonnie)
+                if(bonnie.position == 4) result.push(A_5_Bonnie)
                 
                 break
 

@@ -5,20 +5,44 @@ import { useInterval } from "usehooks-ts";
 import Office from "./components/office/Office";
 import Camera from "./components/camera/Camera";
 import CameraToggle from "./components/camera/CameraToggle"
-
-import Jumpscare_Freddy from "./assets/Jumpscare_Freddy.png"
-import Jumpscare_Foxy from "./assets/JumpScare_Foxy.png"
-import Jumpscare_Chica from "./assets/Jumpscare_Chica.png"
-import Jumpscare_Bonnie from "./assets/Jumpscare_Bonnie.png"
+import JumpScare from "./components/office/JumpScare";
 
 import fit from "./styles/fit.module.css";
-import backgroundStyle from "./styles/background.module.css"
 
 // Types
 export type Animatronic = {
     position: number;
     maxPosition: number;
 };
+const copyAnimatronic = (animatronic: Animatronic): Animatronic => {
+    return {
+        position: animatronic.position,
+        maxPosition: animatronic.maxPosition
+    }
+}
+
+export type Office = {
+    left: {
+        light: boolean
+        door: boolean
+    },
+    right: {
+        light: boolean
+        door: boolean
+    }
+}
+export const copyOffice = (office: Office): Office => {
+    return {
+        left: {
+            light: office.left.light,
+            door: office.left.door
+        },
+        right: {
+            light: office.right.light,
+            door: office.right.door
+        }
+    }
+}
 
 export type Restaurant = {
     animatronics: {
@@ -27,8 +51,21 @@ export type Restaurant = {
         chica: Animatronic;
         bonnie: Animatronic;
     };
+    office: Office
     time: number;
 };
+const copyRestaurant = (restaurant: Restaurant): Restaurant => {
+    return {
+        animatronics: {
+            freddy: copyAnimatronic(restaurant.animatronics.freddy),
+            foxy: copyAnimatronic(restaurant.animatronics.foxy),
+            chica: copyAnimatronic(restaurant.animatronics.chica),
+            bonnie: copyAnimatronic(restaurant.animatronics.bonnie)
+        },
+        office: copyOffice(restaurant.office),
+        time: restaurant.time
+    }
+}
 
 // Component body
 const Game = () => {
@@ -44,7 +81,7 @@ const Game = () => {
                 maxPosition: 9,
             },
             chica: {
-                position: 1,
+                position: 7,
                 maxPosition: 7,
             },
             bonnie: {
@@ -52,71 +89,60 @@ const Game = () => {
                 maxPosition: 6,
             },
         },
-        time: 36,
+        office: {
+            left: {
+                light: false,
+                door: false
+            },
+            right: {
+                light: false,
+                door: false
+            }
+        },
+        time: 360,
     });
-    const [count, setCount] = useState(1);
-    const [done, setDone] = useState(false);
+    const [done, setDone] = useState(false)
     const [cameraToggle, setCameraToggle] = useState(false)
     const [cameraPos, setCameraPos] = useState(1.1)
 
-    // Functions
-    const moveAnimatronic = (animatronic: Animatronic) => {
-        const movement = Math.floor(Math.random() * 3 - 1);
-        let newLocation;
-
-        newLocation = movement + animatronic.position;
-
-        if (newLocation > animatronic.maxPosition) {
-            newLocation = animatronic.maxPosition;
-        } else if (newLocation <= 0) {
-            setDone(true);
-        }
-
-        animatronic.position = newLocation;
-    }
-
-    const jumpScare = () => {
-        let animatronic
-
-        if(restaurant.animatronics.freddy.position <= 0) animatronic = Jumpscare_Freddy
-        else if(restaurant.animatronics.foxy.position <= 0) animatronic = Jumpscare_Foxy
-        else if(restaurant.animatronics.chica.position <= 0) animatronic = Jumpscare_Chica
-        else if(restaurant.animatronics.bonnie.position <= 0) animatronic = Jumpscare_Bonnie
-
-        console.log(animatronic)
-
-        if(animatronic) return (
-            <img
-                src = { animatronic }
-                alt = { animatronic }
-                className = { backgroundStyle.overlay }
-            />
-        )
-    }
-
     // Effects
-    useInterval(
-        () => {
-            console.log(restaurant)
-            if (count % 10 === 0) {
-                moveAnimatronic(restaurant.animatronics.freddy);
-            } else if (count % 2 === 0) {
-                moveAnimatronic(restaurant.animatronics.foxy);
-            } else if (count % 8 === 0) {
-                moveAnimatronic(restaurant.animatronics.chica);
-            } else if (count % 3 === 0 || count % 4 == 0) {
-                moveAnimatronic(restaurant.animatronics.bonnie);
+    useInterval(() => {
+        const moveAnimatronic = (animatronic: Animatronic) => {
+            const movement = Math.floor(Math.random() * 2 - 1);
+            let newLocation;
+
+            newLocation = movement + animatronic.position;
+
+            if (newLocation > animatronic.maxPosition) {
+                newLocation = animatronic.maxPosition;
             }
 
-            setRestaurant(restaurant);
-            setCount(() => count + 1);
-        },
-        done ? null : 1000 * 1000
-    );
+            animatronic.position = newLocation;
+        }
+
+        const result = copyRestaurant(restaurant)
+
+        if(restaurant.time % 10 === 0) {
+            moveAnimatronic(result.animatronics.freddy);
+        }
+        if(restaurant.time % 2 === 0) {
+            moveAnimatronic(result.animatronics.foxy);
+        }
+        if(restaurant.time % 8 === 0) {
+            moveAnimatronic(result.animatronics.chica);
+        }
+        if(restaurant.time % 3 === 0 || restaurant.time % 4 === 0) {
+            moveAnimatronic(result.animatronics.bonnie);
+        }
+
+        result.time -= 1
+
+        setRestaurant(result);
+    }, done ? null : 1 * 1000)
 
     useEffect(() => {
-        
-    }, [restaurant])
+        if(restaurant.time <= 0) setDone(true)
+    }, [restaurant.time])
 
     // Render the component
     return (
@@ -130,8 +156,8 @@ const Game = () => {
                         setCameraPos = { setCameraPos }
                     />:
                     <Office 
-                        bonnie = { restaurant.animatronics.bonnie.position }
-                        chica = { restaurant.animatronics.chica.position }
+                        restaurant = { restaurant }
+                        setRestaurant = { setRestaurant }
                     />
                 }
 
@@ -140,8 +166,20 @@ const Game = () => {
                     setCamera = { setCameraToggle }
                 />
 
-                {}
+                <JumpScare
+                    restaurant = { restaurant }
+                    done = { done }
+                    setDone = { setDone }
+                />
             </div>
+            
+            { console.log(`
+                ${restaurant.animatronics.freddy.position} 
+                ${restaurant.animatronics.foxy.position}
+                ${restaurant.animatronics.chica.position}
+                ${restaurant.animatronics.bonnie.position}
+                ${done}
+            `) }
         </div>
     );
 };

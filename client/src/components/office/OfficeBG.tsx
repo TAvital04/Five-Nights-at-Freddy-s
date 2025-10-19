@@ -1,3 +1,5 @@
+import { type Restaurant } from "../../Game";
+
 import office from "../../assets/Office.png";
 
 import officeControls from "../../assets/Office_Controls.png";
@@ -12,18 +14,11 @@ import doorRight from "../../assets/Office_Door_Right.png";
 import backgroundStyle from "../../styles/background.module.css";
 
 interface OfficeBGProps {
-    officeState: {
-        left: { light: boolean; door: boolean };
-        right: { light: boolean; door: boolean };
-    };
-    bonnie: number;
-    chica: number;
+    restaurant: Restaurant
 }
 
 const OfficeBG = ({
-    officeState,
-    bonnie,
-    chica
+    restaurant
 }: OfficeBGProps) => (
     <div>
         <img
@@ -32,51 +27,76 @@ const OfficeBG = ({
             className={backgroundStyle.overlay}
         />
 
-        {officeState.left.light && (
-            <img
-                src={hallsLeft}
-                alt="halls left"
-                className={backgroundStyle.overlay}
-            />
-        )}
-        {officeState.left.light && bonnie == 1 && (
-            <img
-                src={hallsBonnie}
-                alt="bonnie"
-                className={backgroundStyle.overlay}
-            />
-        )}
-        {officeState.left.door && (
-            <img
-                src={doorLeft}
-                alt="door left"
-                className={backgroundStyle.overlay}
-            />
-        )}
+        {   
+            restaurant.office.left.light && 
+            (
+                <img
+                    src={hallsLeft}
+                    alt="halls left"
+                    className={backgroundStyle.overlay}
+                />
+            )
+        }
+        {
+            restaurant.office.left.light && 
+            restaurant.animatronics.bonnie.position == 1 && 
+            (
+                <img
+                    src={hallsBonnie}
+                    alt="bonnie"
+                    className={backgroundStyle.overlay}
+                />
+            )
+        }
+        {
+            restaurant.office.left.door && 
+            (
+                <img
+                    src={doorLeft}
+                    alt="door left"
+                    className={backgroundStyle.overlay}
+                />
+            )
+        }
 
-        {officeState.right.light && (
-            <img
-                src={hallsRight}
-                alt="halls right"
-                className={backgroundStyle.overlay}
-            />
-        )}
-        {officeState.right.light && chica == 1 && (
-            <img
-                src={hallsChica}
-                alt="chica"
-                className={backgroundStyle.overlay}
-            />
-        )}
-        {officeState.right.door && (
-            <img
-                src={doorRight}
-                alt="door right"
-                className={backgroundStyle.overlay}
-            />
-        )}
+        {
+            restaurant.office.right.light && 
+            (
+                <img
+                    src={hallsRight}
+                    alt="halls right"
+                    className={backgroundStyle.overlay}
+                />
+            )
+        }
+        {
+            restaurant.office.right.light && 
+            restaurant.animatronics.chica.position == 1 && 
+            (
+                <img
+                    src={hallsChica}
+                    alt="chica"
+                    className={backgroundStyle.overlay}
+                />
+            )
+        }
+        {
+            restaurant.office.right.door && 
+            (
+                <img
+                    src={doorRight}
+                    alt="door right"
+                    className={backgroundStyle.overlay}
+                />
+            )
+        }
 
-        <img src={office} alt="office" className={backgroundStyle.overlay} />
+        <img 
+            src={office} 
+            alt="office" 
+            className={backgroundStyle.overlay} 
+        />
+        
         <img
             src={officeControls}
             alt="controls"

@@ -1,37 +1,27 @@
-import { useState } from 'react'
+import { type Dispatch, type SetStateAction } from 'react'
+
+import { type Restaurant } from '../../Game';
 
 import OfficeBG from './OfficeBG'
 import OfficeControls from "./OfficeControls";
 
-interface OfficeProps {
-    bonnie: number;
-    chica: number;
+interface OfficeProps { 
+    restaurant: Restaurant
+    setRestaurant: Dispatch<SetStateAction<Restaurant>>
 }
 
 const Office = ({
-    bonnie, chica
+    restaurant,
+    setRestaurant
 }: OfficeProps) => {
-    const [officeState, setOfficeState] = useState({
-        left: {
-            light: false,
-            door: false
-        },
-        right: {
-            light: false,
-            door: false
-        }
-    })
-
     return (
         <>
             <OfficeBG 
-                officeState = {officeState}
-                bonnie = { bonnie }
-                chica = { chica }
+                restaurant = { restaurant }
             />
             <OfficeControls 
-                officeState = { officeState }
-                setOfficeState = { setOfficeState }
+                restaurant = { restaurant }
+                setRestaurant = { setRestaurant }
             />
         </>
     );

@@ -1,52 +1,37 @@
 import type { Dispatch, SetStateAction } from "react";
 
 import officeControls from "../../styles/officeControls.module.css";
+import { copyOffice, type Restaurant } from "../../Game";
 
 interface OfficeControlsProps {
-    officeState: {
-        left: { light: boolean; door: boolean };
-        right: { light: boolean; door: boolean };
-    };
-    setOfficeState: Dispatch<
-        SetStateAction<{
-            left: { light: boolean; door: boolean };
-            right: { light: boolean; door: boolean };
-        }>
-    >;
+    restaurant: Restaurant; 
+    setRestaurant: Dispatch<SetStateAction<Restaurant>>; 
 }
 
 const OfficeControls = ({
-    officeState, setOfficeState
+    restaurant,
+    setRestaurant
 }: OfficeControlsProps) => {
     const handleToggle = (side: string, operation: string) => {
-        const result = {
-            left: {
-                light: officeState.left.light,
-                door: officeState.left.door
-            },
-            right: {
-                light: officeState.right.light,
-                door: officeState.right.door
-            }
-        }
+        const result = copyOffice(restaurant.office)
 
 
         if(side === "left") {
             if(operation === "light") {
-                result.left.light = !officeState.left.light
+                result.left.light = !restaurant.office.left.light
             }
             else if(operation === "door") {
-                result.left.door = !officeState.left.door;
+                result.left.door = !restaurant.office.left.door;
             }
         } else if(side === "right") {
             if(operation === "light") {
-                result.right.light = !officeState.right.light;
+                result.right.light = !restaurant.office.right.light;
             } else if(operation === "door") {
-                result.right.door = !officeState.right.door;
+                result.right.door = !restaurant.office.right.door;
             }
         }
 
-        setOfficeState(result)
+        setRestaurant((prev) => ({...prev, office: result}))
     }
 
     return (
