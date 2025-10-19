@@ -11,11 +11,13 @@ import fit from "./styles/fit.module.css";
 
 // Types
 export type Animatronic = {
+    name: string;
     position: number;
     maxPosition: number;
 };
 const copyAnimatronic = (animatronic: Animatronic): Animatronic => {
     return {
+        name: animatronic.name,
         position: animatronic.position,
         maxPosition: animatronic.maxPosition
     }
@@ -73,18 +75,22 @@ const Game = () => {
     const [restaurant, setRestaurant] = useState<Restaurant>({
         animatronics: {
             freddy: {
+                name: "freddy",
                 position: 7,
                 maxPosition: 7,
             },
             foxy: {
+                name: "foxy",
                 position: 9,
                 maxPosition: 9,
             },
             chica: {
+                name: "chica",
                 position: 7,
                 maxPosition: 7,
             },
             bonnie: {
+                name: "bonnie",
                 position: 6,
                 maxPosition: 6,
             },
@@ -107,13 +113,23 @@ const Game = () => {
 
     // Effects
     useInterval(() => {
+        const specialCase = (animatronic: Animatronic, movement: number): boolean => {
+
+        }
+        const handleSpecialCases = (animatronic: Animatronic, movement: number) {
+
+        }
+
         const moveAnimatronic = (animatronic: Animatronic) => {
             const movement = Math.floor(Math.random() * 2 - 1);
             let newLocation;
 
+            if(specialCase(animatronic, movement)) 
+                handleSpecialCases(animatronic, movement)
+
             newLocation = movement + animatronic.position;
 
-            if (newLocation > animatronic.maxPosition) {
+            if(newLocation > animatronic.maxPosition) {
                 newLocation = animatronic.maxPosition;
             }
 
@@ -131,7 +147,7 @@ const Game = () => {
         if(restaurant.time % 8 === 0) {
             moveAnimatronic(result.animatronics.chica);
         }
-        if(restaurant.time % 3 === 0 || restaurant.time % 4 === 0) {
+        if(restaurant.time % 3 === 0) {
             moveAnimatronic(result.animatronics.bonnie);
         }
 
