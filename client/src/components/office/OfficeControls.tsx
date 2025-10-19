@@ -1,7 +1,5 @@
 import type { Dispatch, SetStateAction } from "react";
 
-import { newRestaurant } from "../../interfaces"
-
 import officeControls from "../../styles/officeControls.module.css";
 import { copyOffice, type Restaurant } from "../../interfaces";
 

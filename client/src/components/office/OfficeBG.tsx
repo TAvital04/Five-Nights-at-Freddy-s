@@ -1,5 +1,3 @@
-import type { Dispatch, SetStateAction } from "react";
-
 import { type Restaurant } from "../../interfaces";
 
 import office from "../../assets/Office.png";
