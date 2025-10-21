@@ -54,10 +54,13 @@ const Game = () => {
                     />
                 }
 
-                <CameraToggle 
-                    camera = { cameraToggle }
-                    setCamera = { setCameraToggle }
-                />
+                {
+                    !done &&
+                    <CameraToggle 
+                        camera = { cameraToggle }
+                        setCamera = { setCameraToggle }
+                    />
+                }
 
                 <JumpScare
                     restaurant = { restaurant }
