@@ -1,7 +1,10 @@
 import type { Dispatch, SetStateAction } from "react";
 
-import officeControls from "../../styles/officeControls.module.css";
 import { copyOffice, type Restaurant } from "../../interfaces";
+
+import { playDoorSound } from "../../utils/sounds.ts"
+
+import officeControls from "../../styles/officeControls.module.css";
 
 interface OfficeControlsProps {
     restaurant: Restaurant
@@ -34,6 +37,8 @@ const OfficeControls = ({
                 result.right.door = !restaurant.office.right.door;
             }
         }
+
+        if(operation === "door") playDoorSound()
 
         setRestaurant((prev) => ({...prev, office: result}))
     }

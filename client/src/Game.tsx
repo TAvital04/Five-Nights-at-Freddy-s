@@ -37,44 +37,40 @@ const Game = () => {
 
     // Render the component
     return (
-        <div className={fit.game}>
-            <div className={fit.aspect}>
-                {   
-                    cameraToggle && !done?
-                    <Camera 
-                        restaurant = { restaurant }
-                        cameraPos = { cameraPos }
-                        setCameraPos = { setCameraPos }
-                    />:
-                    <Office 
-                        restaurant = { restaurant }
-                        setRestaurant = { setRestaurant }
-                        done = { done }
-                        resetGame = { resetGame }
+        <>
+            <audio controls autoPlay loop>
+                
+            </audio>
+
+            <div className={fit.game}>
+                <div className={fit.aspect}>
+                    {   
+                        cameraToggle && !done?
+                        <Camera 
+                            restaurant = { restaurant }
+                            cameraPos = { cameraPos }
+                            setCameraPos = { setCameraPos }
+                        />:
+                        <Office 
+                            restaurant = { restaurant }
+                            setRestaurant = { setRestaurant }
+                            done = { done }
+                            resetGame = { resetGame }
+                        />
+                    }
+
+                    <CameraToggle 
+                        camera = { cameraToggle }
+                        setCamera = { setCameraToggle }
                     />
-                }
 
-                <CameraToggle 
-                    camera = { cameraToggle }
-                    setCamera = { setCameraToggle }
-                />
-
-                <JumpScare
-                    restaurant = { restaurant }
-                    setDone = { setDone }
-                />
+                    <JumpScare
+                        restaurant = { restaurant }
+                        setDone = { setDone }
+                    />
+                </div>
             </div>
-            
-            {/*             
-                { console.log(`
-                    ${restaurant.animatronics.freddy.position} 
-                    ${restaurant.animatronics.foxy.position}
-                    ${restaurant.animatronics.chica.position}
-                    ${restaurant.animatronics.bonnie.position}
-                    ${done}
-                `) } 
-            */}
-        </div>
+        </>
     );
 };
 
