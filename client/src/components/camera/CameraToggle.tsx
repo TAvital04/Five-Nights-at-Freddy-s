@@ -1,6 +1,6 @@
 import type { Dispatch, SetStateAction } from "react"
 
-import cameraToggle from "../../assets/Camera_Toggle.png"
+import cameraToggle from "../../assets/images/Camera_Toggle.png"
 
 import backgroundStyle from '../../styles/background.module.css'
 import cameraToggleStyle from '../../styles/cameraToggle.module.css'

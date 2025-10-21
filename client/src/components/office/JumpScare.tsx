@@ -2,10 +2,10 @@ import { useEffect, useState, type Dispatch, type SetStateAction } from "react"
 
 import { type Restaurant } from "../../interfaces"
 
-import Jumpscare_Freddy from "../../assets/Jumpscare_Freddy.png"
-import Jumpscare_Foxy from "../../assets/JumpScare_Foxy.png"
-import Jumpscare_Chica from "../../assets/Jumpscare_Chica.png"
-import Jumpscare_Bonnie from "../../assets/Jumpscare_Bonnie.png"
+import Jumpscare_Freddy from "../../assets/images/Jumpscare_Freddy.png"
+import Jumpscare_Foxy from "../../assets/images/JumpScare_Foxy.png"
+import Jumpscare_Chica from "../../assets/images/Jumpscare_Chica.png"
+import Jumpscare_Bonnie from "../../assets/images/Jumpscare_Bonnie.png"
 
 import backgroundStyle from "../../styles/background.module.css"
 
