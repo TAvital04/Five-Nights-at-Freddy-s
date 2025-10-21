@@ -37,27 +37,22 @@ const Game = () => {
 
     // Render the component
     return (
-        <>
-            <audio controls autoPlay loop>
-                
-            </audio>
-
-            <div className={fit.game}>
-                <div className={fit.aspect}>
-                    {   
-                        cameraToggle && !done?
-                        <Camera 
-                            restaurant = { restaurant }
-                            cameraPos = { cameraPos }
-                            setCameraPos = { setCameraPos }
-                        />:
-                        <Office 
-                            restaurant = { restaurant }
-                            setRestaurant = { setRestaurant }
-                            done = { done }
-                            resetGame = { resetGame }
-                        />
-                    }
+        <div className={fit.game}>
+            <div className={fit.aspect}>
+                {   
+                    cameraToggle && !done?
+                    <Camera 
+                        restaurant = { restaurant }
+                        cameraPos = { cameraPos }
+                        setCameraPos = { setCameraPos }
+                    />:
+                    <Office 
+                        restaurant = { restaurant }
+                        setRestaurant = { setRestaurant }
+                        done = { done }
+                        resetGame = { resetGame }
+                    />
+                }
 
                 {
                     !done &&
@@ -67,13 +62,12 @@ const Game = () => {
                     />
                 }
 
-                    <JumpScare
-                        restaurant = { restaurant }
-                        setDone = { setDone }
-                    />
-                </div>
+                <JumpScare
+                    restaurant = { restaurant }
+                    setDone = { setDone }
+                />
             </div>
-        </>
+        </div>
     );
 };
 
