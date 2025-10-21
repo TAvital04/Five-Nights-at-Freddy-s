@@ -23,7 +23,7 @@ const Game = () => {
 
     // Effects
     useInterval(() => {
-        let result = moveAnimatronics(restaurant, cameraPos)
+        const result = moveAnimatronics(restaurant, cameraPos)
 
         if(cameraToggle) result.time -= 3
         if(restaurant.office.left.door) result.time -= 3
@@ -35,7 +35,14 @@ const Game = () => {
     }, done ? null : 1 * 1000)
 
     useEffect(() => {
-        if(restaurant.time <= 0) setDone(true)
+        if(restaurant.time <= 0) {
+            const result = newRestaurant()
+
+            result.animatronics.freddy.position = 0
+
+            setRestaurant(result)
+            setDone(true)
+        }
     }, [restaurant.time])
 
     // Functions
@@ -76,15 +83,6 @@ const Game = () => {
                     restaurant = { restaurant }
                     setDone = { setDone }
                 />
-
-                {console.log(`
-                    Freddy: ${restaurant.animatronics.freddy.position}
-                    Foxy: ${restaurant.animatronics.foxy.position}
-                    Chica: ${restaurant.animatronics.chica.position}
-                    Bonnie: ${restaurant.animatronics.bonnie.position}
-                    Time: ${restaurant.time}
-                    Done: ${done}
-                `) || true}
             </div>
         </div>
     );
