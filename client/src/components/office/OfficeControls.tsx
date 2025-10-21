@@ -45,43 +45,51 @@ const OfficeControls = ({
 
     return (
         <>
-            <div className={`${officeControls.left}`}>
-                <button
-                    className={`
-                        ${officeControls.officeToggle} 
-                        ${officeControls.light}
-                    `}
-                    onClick={() => handleToggle("left", "light")}
-                />
-                <button
-                    className={`
-                        ${officeControls.officeToggle} 
-                        ${officeControls.door}
-                    `}
-                    onClick={() => handleToggle("left", "door")}
-                />
-            </div>
-            <div className={`${officeControls.right}`}>
-                <button
-                    className={`
-                        ${officeControls.officeToggle} 
-                        ${officeControls.light}
-                    `}
-                    onClick={() => handleToggle("right", "light")}
-                />
-                <button
-                    className={`
-                        ${officeControls.officeToggle} 
-                        ${officeControls.door}
-                    `}
-                    onClick={() => handleToggle("right", "door")}
-                />
-            </div>
+            {
+                !done &&
+                <div className = "doors">
+                    <div className={`${officeControls.left}`}>
+                        <button
+                            className={`
+                                ${officeControls.officeToggle} 
+                                ${officeControls.light}
+                            `}
+                            onClick={() => handleToggle("left", "light")}
+                        />
+                        <button
+                            className={`
+                                ${officeControls.officeToggle} 
+                                ${officeControls.door}
+                            `}
+                            onClick={() => handleToggle("left", "door")}
+                        />
+                    </div>
+                    <div className={`${officeControls.right}`}>
+                        <button
+                            className={`
+                                ${officeControls.officeToggle} 
+                                ${officeControls.light}
+                            `}
+                            onClick={() => handleToggle("right", "light")}
+                        />
+                        <button
+                            className={`
+                                ${officeControls.officeToggle} 
+                                ${officeControls.door}
+                            `}
+                            onClick={() => handleToggle("right", "door")}
+                        />
+                    </div>
+                </div>
+            }
 
             {
                 done &&
                 <button
-                    className = {`${officeControls.officeToggle} ${officeControls.reset}`}
+                    className = {`
+                        ${officeControls.officeToggle} 
+                        ${officeControls.reset}
+                    `}
                     onClick = { resetGame }
                 />
             }
