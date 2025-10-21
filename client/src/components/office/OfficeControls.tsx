@@ -2,7 +2,7 @@ import type { Dispatch, SetStateAction } from "react";
 
 import { copyOffice, type Restaurant } from "../../interfaces";
 
-import { playDoorSound } from "../../utils/sounds.ts"
+import { playDoorSound, playLightSound } from "../../utils/sounds.ts"
 
 import officeControls from "../../styles/officeControls.module.css";
 
@@ -39,6 +39,7 @@ const OfficeControls = ({
         }
 
         if(operation === "door") playDoorSound()
+        if(operation === "light") playLightSound()
 
         setRestaurant((prev) => ({...prev, office: result}))
     }

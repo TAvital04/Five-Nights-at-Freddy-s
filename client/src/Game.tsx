@@ -11,6 +11,7 @@ import JumpScare from "./components/office/JumpScare";
 
 import fit from "./styles/fit.module.css";
 import moveAnimatronics from "./utils/movement";
+import AmbientSounds from "./components/AmbientSounds";
 
 // Component body
 const Game = () => {
@@ -22,7 +23,15 @@ const Game = () => {
 
     // Effects
     useInterval(() => {
-        setRestaurant(moveAnimatronics(restaurant, cameraPos))
+        let result = moveAnimatronics(restaurant, cameraPos)
+
+        if(cameraToggle) result.time -= 3
+        if(restaurant.office.left.door) result.time -= 3
+        if(restaurant.office.right.door) result.time -= 3
+        if(restaurant.office.left.light) result.time -= 3
+        if(restaurant.office.right.light) result.time -=3
+
+        setRestaurant(result)
     }, done ? null : 1 * 1000)
 
     useEffect(() => {
@@ -39,6 +48,7 @@ const Game = () => {
     return (
         <div className={fit.game}>
             <div className={fit.aspect}>
+                {/* <AmbientSounds /> */}
                 {   
                     cameraToggle && !done?
                     <Camera 
@@ -66,6 +76,15 @@ const Game = () => {
                     restaurant = { restaurant }
                     setDone = { setDone }
                 />
+
+                {console.log(`
+                    Freddy: ${restaurant.animatronics.freddy.position}
+                    Foxy: ${restaurant.animatronics.foxy.position}
+                    Chica: ${restaurant.animatronics.chica.position}
+                    Bonnie: ${restaurant.animatronics.bonnie.position}
+                    Time: ${restaurant.time}
+                    Done: ${done}
+                `) || true}
             </div>
         </div>
     );

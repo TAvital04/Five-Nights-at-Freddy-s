@@ -1,5 +1,7 @@
 import type { Dispatch, SetStateAction } from "react"
 
+import { playCameraFlickSound } from "../../utils/sounds.ts"
+
 import cameraToggle from "../../assets/images/Camera_Toggle.png"
 
 import backgroundStyle from '../../styles/background.module.css'
@@ -16,6 +18,7 @@ const CameraToggle = ({
 }: CameraToggleProps) => {
     const handleToggle = () => {
         const result = !camera
+        playCameraFlickSound()
         setCamera(result)
     }
 

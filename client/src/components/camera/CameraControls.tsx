@@ -1,5 +1,7 @@
 import type { Dispatch, SetStateAction } from "react";
 
+import { playCameraFlickSound } from "../../utils/sounds.ts"
+
 import cameraControlsStyle from '../../styles/cameraControls.module.css'
 
 interface CameraControlsProps {
@@ -11,6 +13,11 @@ const CameraControls = ({
     camera,
     setCamera
 }: CameraControlsProps) => {
+    const handleCameraSwitch = (camera: number) => {
+        playCameraFlickSound()
+        setCamera(camera)
+    }
+
     return (
         <>
             <button
@@ -18,77 +25,77 @@ const CameraControls = ({
                     ${cameraControlsStyle.cameraToggle} 
                     ${cameraControlsStyle.c1A}
                 `}
-                onClick={() => setCamera(1.1)}
+                onClick={() => handleCameraSwitch(1.1)}
             />
             <button
                 className={`
                     ${cameraControlsStyle.cameraToggle} 
                     ${cameraControlsStyle.c1B}
                 `}
-                onClick={() => setCamera(1.2)}
+                onClick={() => handleCameraSwitch(1.2)}
             />
             <button
                 className={`
                     ${cameraControlsStyle.cameraToggle} 
                     ${cameraControlsStyle.c1C}
                 `}
-                onClick={() => setCamera(1.3)}
+                onClick={() => handleCameraSwitch(1.3)}
             />
             <button
                 className={`
                     ${cameraControlsStyle.cameraToggle} 
                     ${cameraControlsStyle.c2A}
                 `}
-                onClick={() => setCamera(2.1)}
+                onClick={() => handleCameraSwitch(2.1)}
             />
             <button
                 className={`
                     ${cameraControlsStyle.cameraToggle} 
                     ${cameraControlsStyle.c2B}
                 `}
-                onClick={() => setCamera(2.2)}
+                onClick={() => handleCameraSwitch(2.2)}
             />
             <button
                 className={`
                     ${cameraControlsStyle.cameraToggle} 
                     ${cameraControlsStyle.c3}
                 `}
-                onClick={() => setCamera(3)}
+                onClick={() => handleCameraSwitch(3)}
             />
             <button
                 className={`
                     ${cameraControlsStyle.cameraToggle} 
                     ${cameraControlsStyle.c4A}
                 `}
-                onClick={() => setCamera(4.1)}
+                onClick={() => handleCameraSwitch(4.1)}
             />
             <button
                 className={`
                     ${cameraControlsStyle.cameraToggle} 
                     ${cameraControlsStyle.c4B}
                 `}
-                onClick={() => setCamera(4.2)}
+                onClick={() => handleCameraSwitch(4.2)}
             />
             <button
                 className={`
                     ${cameraControlsStyle.cameraToggle} 
                     ${cameraControlsStyle.c5}
                 `}
-                onClick={() => setCamera(5)}
+                onClick={() => handleCameraSwitch(5)}
             />
             <button
                 className={`
                     ${cameraControlsStyle.cameraToggle} 
                     ${cameraControlsStyle.c6}
                 `}
-                onClick={() => setCamera(6)}
+                onClick={() => handleCameraSwitch(6)}
             />
             <button
                 className={`
                     ${cameraControlsStyle.cameraToggle} 
                     ${cameraControlsStyle.c7}
                 `}
-                onClick={() => setCamera(7)}
+                onClick={() => handleCameraSwitch(7)}
             />
         </>
     )

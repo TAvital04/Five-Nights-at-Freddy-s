@@ -2,6 +2,8 @@ import { useEffect, useState, type Dispatch, type SetStateAction } from "react"
 
 import { type Restaurant } from "../../interfaces"
 
+import { playJumpscareSound } from "../../utils/sounds.ts"
+
 import Jumpscare_Freddy from "../../assets/images/Jumpscare_Freddy.png"
 import Jumpscare_Foxy from "../../assets/images/JumpScare_Foxy.png"
 import Jumpscare_Chica from "../../assets/images/Jumpscare_Chica.png"
@@ -33,7 +35,10 @@ const JumpScare = ({
             result = Jumpscare_Bonnie;
         else result = null;
 
-        if(result) setDone(true)
+        if(result) {
+            playJumpscareSound()
+            setDone(true)
+        }
 
         setJumpscare(result)
     }, [restaurant]);

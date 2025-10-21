@@ -7,13 +7,16 @@ const handleSpecialCases = (
     regularCase: number
 ): number => {
     if (
-        (
-            animatronic.name === "freddy" || 
-            animatronic.name === "chica"
-        ) &&
+        animatronic.name === "chica" &&
         animatronic.position === 1 &&
         restaurant.office.right.door === true
     ) return animatronic.maxPosition
+
+    if (
+        animatronic.name === "freddy" && 
+        animatronic.position === 1 &&
+        restaurant.office.right.door === true
+    ) return 1  
 
     if (
         (
